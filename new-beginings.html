@@ -1,1 +1,328 @@
-<h1> Hello i am starting software engineering<h1>
+<h1> Hello i am continuing software engineering<h1>
+<h2> This is a refresher on the basics of html <h2>
+
+   <!-- type ! in an empty .html file and press Tab FOR THE HTML SKELETON-->
+   <!-- remember for writing comments in html is using the tag arrow then exclamation mark then two hyphens then close with two hyphens and a tag arrow  -->
+   <!-- Anything btwn two open and closd tag is element and one without anything is empty or void -->
+   <!-- <!DOCTYPE html> tells the browser "this is a modern HTML5 document". Without it, browsers switch to an old compatibility mode.
+
+<html lang="en"> is the root element that wraps everything. The lang attribute tells screen readers and search engines which language the page is in.
+
+<head> holds information about the page. Nothing inside it appears on the page itself.
+
+<meta charset="UTF-8"> lets the page show every character correctly, including accents and emojis.
+
+<meta name="viewport" ...> makes the page display at the right size on phones. It is essential for responsive design.
+
+<title> sets the text shown on the browser tab, in bookmarks and in search results.
+
+<body> contains everything the user actually sees.
+
+Notice the indentation (spaces at the start of lines). Elements inside other elements are indented one level further. The browser does not care, but humans do: indentation shows which element is inside (a child of) which. An element that contains another is its parent. -->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        
+    </body>
+    </html>
+    <!-- There are six heading levels, from <h1> (most important, biggest) to <h6>. Use one <h1> per page for the main title, then <h2> for sections, <h3> for sub-sections, and so on. Never pick a heading just because of its size - size is CSS's job.-->
+    <h1>QuickNotes</h1>
+<h2>Today's Notes</h2>
+<p>This is a paragraph of text.</p>
+<p>This is <strong>very important</strong> and this is <em>emphasised</em>.</p>
+<p>Line one<br />Line two (br = line break)</p>
+
+<!-- Lists
+
+Use <ul> (unordered list) for bullet points and <ol> (ordered list) for numbered steps. Each item goes in an <li> (list item).
+
+Lists (html) -->
+
+<ul>
+  <li>Buy milk</li>
+  <li>Call Grace</li>
+</ul>
+
+<ol>
+  <li>Open VS Code</li>
+  <li>Create index.html</li>
+  <li>Open with Live Server</li>
+</ol>
+
+<!-- Links and images<br/>
+
+A link uses the <a> (anchor) element. The href attribute says where it goes. An image uses <img>, with src (the file path or URL) and <alt> (a text description for people who cannot see the image and for when the image fails to load).
+
+Links and images   (html)<br/> -->
+
+<!-- Link to another website (opens in a new tab) -->
+<a href="https://developer.mozilla.org" target="_blank">MDN Web Docs</a>
+<!-- Link to another page in the same folder -->
+<a href="about.html">About QuickNotes</a>
+<!-- Image in an "images" folder next to this HTML file -->
+<img src="images/logo.png" alt="QuickNotes logo: a yellow sticky note" />
+
+<!-- Key Idea - file paths: about.html means "a file called about.html in the same folder as this page". images/logo.png means "go into the images folder, then find logo.png". ../style.css means "go up one folder first". Most "my image does not show" problems are path mistakes. -->
+<!--A <div> is a generic box with no meaning. Semantic elements describe what their content is. They look the same as a div by default, but they help screen readers (used by blind users), search engines and other developers understand the page.
+The most common semantic elements are:
+
+<header> - the introductory area of a page or section, usually holding the logo, site title or tagline.
+<nav> - a block of navigation links, such as the main menu.
+<main> - the main, unique content of the page. Use only one per page.
+<section> - a themed group of content, usually with its own heading, such as "Add a note" or "Your notes".
+<article> - self-contained content that makes sense on its own, such as a blog post or a single note card.
+<aside> - side content that is related but not essential, such as tips or a sidebar.
+<footer> - the closing area of a page or section, usually holding copyright and contact links.
+
+
+Non-semantic vs semantic(html)-->
+
+<!-- Hard to understand: everything is a div 
+<div class="top">QuickNotes</div>
+<div class="content">...</div>
+ 
+ Clear: the tags explain the structure
+<header>QuickNotes</header>
+<main>...</main> -->
+
+<!-- Forms let users type information. QuickNotes needs one: a text box for the note and a button to add it.
+
+
+A simple form (html) -->
+
+<form id="note-form">
+  <label for="note-input">New note</label>
+  <input
+    type="text"
+    id="note-input"
+    name="note"
+    placeholder="What do you want to remember?"
+    required
+  />
+  <button type="submit">Add Note</button>
+</form>
+
+<!-- Each part of the form has a job:
+
+<form> groups the inputs together. Pressing Enter in the text box, or clicking the submit button, "submits" the form.
+<label for="note-input"> is the visible text that describes the input. Its for value must match the input's id. Then clicking the label puts the cursor in the box, and screen readers announce the label when the box is focused.
+<input type="text"> is a one-line text box. Other useful types include email, password, number, checkbox and date; each gives a suitable keyboard on phones and some built-in checking.
+id="note-input" is a unique name for this element on the page. Labels, CSS and JavaScript use it to find the element.
+name="note" is the name used when form data is sent to a server (we meet servers on Day 5).
+placeholder is grey hint text shown while the box is empty. It is not a replacement for a label.
+required makes the browser refuse to submit the form if the box is empty.
+<button type="submit"> is the button that submits the form.
+
+Tip: An id must be unique on the page (only one element can have id="note-input"). A class can be shared by many elements. Use id for one special element, class for groups of similar elements.-->
+
+<!--The elements above are enough for QuickNotes, but a few more appear on almost every website. Knowing them makes it much easier to read other people's HTML.
+Generic containers: div and span
+
+When no semantic element fits, use a generic container. A <div> is a block container for grouping larger pieces (for example, a card). A <span> is an inline container for wrapping a few words inside a sentence, usually so they can be styled.
+
+div and span(html)-->
+
+
+<div class="note-card">
+  <p>Meeting at <span class="highlight">3 pm</span> tomorrow.</p>
+</div>
+
+
+<!-- Tables for tabular data
+A table is the right choice only for data that naturally has rows and columns, like a timetable or a price list - never for page layout. <table> holds the table, <tr> is a table row, <th> is a heading cell and <td> is a normal data cell. <thead> and <tbody> group the heading row and the data rows.
+
+
+A simple data table (html) -->
+
+<table>
+  <thead>
+    <tr>
+      <th>Shortcut</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Enter</td>
+      <td>Add the note</td>
+    </tr>
+    <tr>
+      <td>Ctrl + S</td>
+      <td>Save the file in VS Code</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- Other form controls
+
+Forms can collect much more than one line of text. <textarea> is a multi-line text box, <select> with <option> elements creates a dropdown, and type="email" makes the browser check that the text looks like an email address.
+
+More form controls (html) -->
+
+
+<label for="email">Email</label>
+<input type="email" id="email" name="email" required />
+ 
+<label for="message">Message</label>
+<textarea id="message" name="message" rows="4"></textarea>
+ 
+<label for="topic">Topic</label>
+<select id="topic" name="topic">
+  <option value="bug">Report a bug</option>
+  <option value="idea">Suggest an idea</option>
+</select>
+
+
+<!-- Media: audio and video
+
+HTML can play media without any extra software. The controls attribute shows play, pause and volume buttons.
+
+
+
+Audio and video (html) -->
+
+
+<video src="intro.mp4" controls width="480"></video>
+<audio src="notification.mp3" controls></audio>
+
+
+<!-- Accessibility basics
+Accessibility means making pages usable by everyone, including people who are blind (and use screen readers), people who cannot use a mouse (and use only the keyboard), and people with low vision. Good HTML does most of the work for free. Use semantic elements, give every image a meaningful alt text, connect every input to a <label>, use headings in order (h1, then h2, then h3), and use real <button> and <a> elements for things people click, because they work with the keyboard automatically.
+
+Checking your HTML
+The free W3C Markup Validation Service (validator.w3.org) checks HTML for mistakes. Choose "Validate by Direct Input", paste your code and click Check. It lists problems such as unclosed tags or duplicate ids, with line numbers. Aim for zero errors.
+
+
+ractice/quicknotes-day1/index.html (html) -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuickNotes</title>
+  </head>
+  <body>
+    <header>
+      <h1>QuickNotes</h1>
+      <p>Capture ideas before they disappear.</p>
+    </header>
+ 
+    <main>
+      <section>
+        <h2>Add a note</h2>
+        <form id="note-form">
+          <label for="note-input">New note</label>
+          <input type="text" id="note-input" placeholder="Type a note..." />
+          <button type="submit">Add Note</button>
+        </form>
+      </section>
+ 
+      <section>
+        <h2>Your notes</h2>
+        <p id="note-count">You have 2 notes.</p>
+        <ul id="notes-list">
+          <li>Revise HTML forms</li>
+          <li>Push my code to GitHub</li>
+        </ul>
+      </section>
+    </main>
+ 
+    <footer>
+      <p>&copy; 2026 QuickNotes. Built during Web Foundations.</p>
+    </footer>
+  </body>
+</html>
+
+
+<!-- What is happening in this code
+The page follows the classic layout of almost every website: a <header> at the top, a <main> area with the unique content, and a <footer> at the bottom. Inside <main>, the two <section> elements divide the app into its two jobs - adding notes and showing notes - and each starts with an <h2>, so the heading outline reads: QuickNotes (h1) → Add a note (h2) → Your notes (h2).
+
+Several elements have an id even though nothing uses it yet: note-form, note-input, note-count and notes-list. These are deliberate "handles" for later. On Day 2, CSS will use them to style the form, and on Day 4 JavaScript will use them to read what the user typed and add new notes to the list. Choosing clear ids now saves rewriting the HTML later.
+
+The two <li> notes are placeholder content. They let us see and style what a real note will look like before any JavaScript exists; on Day 4 they will be removed and generated automatically.
+
+Check your work
+
+Open the page with Live Server. You should see a title, a form, two notes and a footer.
+Open DevTools → Elements tab and expand the tags. Can you see how section is inside main, which is inside body?
+&copy; is an HTML entity - a code for a special character (it shows ©). Others: &lt; for <, &gt; for >, &amp; for &.
+
+
+ractice/quicknotes-day1/index.html (html) -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuickNotes</title>
+  </head>
+  <body>
+    <header>
+      <h1>QuickNotes</h1>
+      <p>Capture ideas before they disappear.</p>
+    </header>
+ 
+    <main>
+      <section>
+        <h2>Add a note</h2>
+        <form id="note-form">
+          <label for="note-input">New note</label>
+          <input type="text" id="note-input" placeholder="Type a note..." />
+          <button type="submit">Add Note</button>
+        </form>
+      </section>
+ 
+      <section>
+        <h2>Your notes</h2>
+        <p id="note-count">You have 2 notes.</p>
+        <ul id="notes-list">
+          <li>Revise HTML forms</li>
+          <li>Push my code to GitHub</li>
+        </ul>
+      </section>
+    </main>
+ 
+    <footer>
+      <p>&copy; 2026 QuickNotes. Built during Web Foundations.</p>
+    </footer>
+  </body>
+</html>
+
+
+<!-- What is happening in this code
+The page follows the classic layout of almost every website: a <header> at the top, a <main> area with the unique content, and a <footer> at the bottom. Inside <main>, the two <section> elements divide the app into its two jobs - adding notes and showing notes - and each starts with an <h2>, so the heading outline reads: QuickNotes (h1) → Add a note (h2) → Your notes (h2).
+
+Several elements have an id even though nothing uses it yet: note-form, note-input, note-count and notes-list. These are deliberate "handles" for later. On Day 2, CSS will use them to style the form, and on Day 4 JavaScript will use them to read what the user typed and add new notes to the list. Choosing clear ids now saves rewriting the HTML later.
+
+The two <li> notes are placeholder content. They let us see and style what a real note will look like before any JavaScript exists; on Day 4 they will be removed and generated automatically.
+
+Check your work
+
+Open the page with Live Server. You should see a title, a form, two notes and a footer.
+Open DevTools → Elements tab and expand the tags. Can you see how section is inside main, which is inside body?
+&copy; is an HTML entity - a code for a special character (it shows ©). Others: &lt; for <, &gt; for >, &amp; for &.
+-->
+
+<!-- Forgetting to close a tag, e.g. <p>Hello with no </p>. The browser tries to guess, and the page layout goes strange. VS Code highlights the matching tag when you click one - use it to check.
+Opening the file by double-clicking instead of using Live Server, then wondering why changes do not appear. Always use Live Server and always save (Ctrl+S).
+Using headings for size (<h4> because it "looks right"). Choose headings by importance; change size later with CSS.
+A <label for="..."> that does not match the input's id exactly. They are case-sensitive: note-input is not Note-Input.
+
+
+Recap
+
+The web works through requests and responses between clients and servers, using HTTP. DNS turns names into IP addresses.
+HTML labels content using elements made of tags and attributes.
+Every page has <!DOCTYPE html>, <html>, <head> and <body>.
+Semantic elements (header, nav, main, section, footer) describe meaning and improve accessibility.
+Forms collect input; every input needs a matching label. -->

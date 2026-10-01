@@ -1,0 +1,218 @@
+<!--
+Learning Objectives
+
+Connect a CSS file to an HTML page.
+
+Write CSS rules using selectors, properties and values.
+
+Select elements by tag, class and id, and understand which rule wins.
+
+Explain and use the box model (content, padding, border, margin).
+
+Build layouts with Flexbox.
+
+Make a page responsive using a media query.
+
+Instructor Note: Live-edit CSS in DevTools early in the lesson (Elements tab → Styles panel). Changing a colour and seeing it instantly is the moment CSS "clicks" for most beginners. Remind them DevTools changes are temporary - they vanish on refresh.
+
+CSS (Cascading Style Sheets) controls how HTML looks: colours, fonts, spacing, sizes and layout. We keep CSS in its own file so structure (HTML) and style (CSS) stay separate and easy to change.
+
+Create style.css next to index.html, then link it inside the <head>:
+
+index.html (inside <head>)   (html)
+-->
+
+<link rel="stylesheet" href="style.css" />
+
+<!--
+Anatomy of a rule (css)
+-->
+
+h1 {
+  color: darkred;
+  font-size: 32px;
+}
+/*
+  h1          selector  → WHICH elements to style
+  { }         declaration block
+  color       property  → WHAT to change
+  darkred     value     → HOW to change it
+  ;           ends each declaration (don't forget it!)
+*/
+
+<!--
+Anatomy of a rule (css)
+-->
+
+h1 {
+  color: darkred;
+  font-size: 32px;
+}
+/*
+  h1          selector  → WHICH elements to style
+  { }         declaration block
+  color       property  → WHAT to change
+  darkred     value     → HOW to change it
+  ;           ends each declaration (don't forget it!)
+*/
+
+<!--
+Colours can be written in several ways:
+
+Named colours such as red, teal or white are easy to read but limited to about 140 options.
+Hex colours such as #8E0000 or #0BA184 are the most common. After the # come three pairs of characters for red, green and blue, each from 00 (none) to FF (full).
+RGB and RGBA such as rgb(11, 161, 132) give the same red, green and blue values as numbers from 0 to 255. In rgba(0, 0, 0, 0.5), the last value is the transparency, from 0 (invisible) to 1 (solid).
+
+Units control sizes:
+
+px (pixels) is a fixed size, for example 16px.
+rem is relative to the root font size, which is usually 16px, so 1.5rem equals 24px. Using rem for text respects users who increase their browser's font size.
+% is a percentage of the parent element, for example width: 50%.
+vw and vh are percentages of the browser window's width and height; 100vh is the full window height.
+
+Fonts(css)
+-->
+
+body {
+  /* Try the first font; if unavailable, use the next, and so on */
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  color: #222;
+}
+
+<!--
+Every element on a page is a rectangular box made of four layers, from the inside out:
+
+
+The box model(text)
+
+┌────────────── margin (space OUTSIDE the border) ───────────────┐
+│ ┌────────────────── border (the edge line) ──────────────────┐ │
+│ │ ┌────────── padding (space INSIDE the border) ───────────┐ │ │
+│ │ │                                                        │ │ │
+│ │ │              content (text, image, etc.)               │ │ │
+│ │ │                                                        │ │ │
+│ │ └────────────────────────────────────────────────────────┘ │ │
+│ └────────────────────────────────────────────────────────────┘ │
+└────────────────────────────────────────────────────────────────┘
+
+
+Analogy: a framed photo on a wall. The photo is the content, the white card around it is the padding, the frame is the border, and the empty wall space between frames is the margin.
+
+
+
+Box model example(css)
+-->
+
+.note {
+  padding: 12px 16px;        /* 12px top & bottom, 16px left & right */
+  border: 1px solid #ddd;    /* width, style, colour */
+  border-radius: 8px;        /* rounded corners */
+  margin-bottom: 10px;       /* space below each note */
+}
+ 
+/* Recommended at the top of every stylesheet */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+<!--
+Key Idea: By default, width only measures the content, so padding and border make a box bigger than you asked for. box-sizing: border-box makes width include padding and border - much more predictable. The * selector means "every element".
+
+Block vs inline elements
+Block elements (div, p, h1, section, ul) start on a new line and stretch across the full width. Inline elements (a, strong, em, span) sit inside a line of text and only take the width they need. You can change this with the display property, for example display: block; or display: flex;
+
+
+Flexbox arranges child elements in a row or column and controls spacing and alignment. You turn it on for a container (the parent), and it arranges the container's children.
+
+Flexbox basics (css)
+-->
+
+.container {
+  display: flex;               /* turn on flexbox for the children */
+  flex-direction: row;         /* row (default) or column */
+  justify-content: space-between; /* spacing along the main direction */
+  align-items: center;         /* alignment across the other direction */
+  gap: 12px;                   /* space between children */
+}
+
+<!--
+The most useful Flexbox properties are:
+
+flex-direction - row (the default) lays children side by side; column stacks them.
+justify-content - positions children along the main direction, for example flex-start, center or space-between.
+align-items - positions children across the main direction, for example stretch (the default), center or flex-start.
+gap - the space between children, for example 8px or 1rem.
+flex-wrap: wrap - lets children move onto a new line when there is not enough room.
+flex: 1 (set on a child, not the container) - makes that child grow to fill any leftover space.
+
+For QuickNotes, we want the text box to take all spare space and the button to sit next to it:
+
+QuickNotes form layout(css)
+-->
+
+#note-form {
+  display: flex;
+  gap: 8px;
+}
+ 
+#note-input {
+  flex: 1; /* grow to fill the remaining width */
+}
+
+<!--
+Tip: Practise Flexbox with the free game Flexbox Froggy (flexboxfroggy.com). Twenty minutes of play teaches more than an hour of reading.
+
+A responsive page adapts to screen size. A media query applies CSS only when a condition is true, such as "the screen is 600px wide or less"
+
+Media query(css)
+-->
+
+/* Normal (wide) screens: input and button side by side */
+#note-form {
+  display: flex;
+  gap: 8px;
+}
+ 
+/* Small screens (phones): stack them vertically */
+@media (max-width: 600px) {
+  #note-form {
+    flex-direction: column;
+  }
+}
+
+<!--
+Test it: open DevTools and click the device toolbar icon (a phone and tablet, or Ctrl+Shift+M). Choose a phone size and watch the layout change.
+
+
+Flexbox is ideal for arranging items in one direction (a row or a column). CSS Grid arranges items in rows and columns at the same time, like a spreadsheet. It is perfect for card galleries, dashboards and whole-page layouts.
+
+Grid basics(css)
+-->
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* three equal columns */
+  gap: 16px;
+}
+
+<!--
+The fr unit means "one fraction of the free space", so repeat(3, 1fr) creates three columns of equal width. A very useful responsive pattern lets the browser decide how many columns fit:
+
+Responsive grid without media queries(css)
+-->
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+<!--
+Read it as: "create as many columns as fit, each at least 200px wide, sharing any extra space equally." On a phone this gives one column; on a laptop, three or four.
+
+
+A simple rule of thumb: use Flexbox for small components (a navigation bar, a form row, a note card) and Grid for larger layouts with rows and columns (a gallery of cards, a page with a sidebar).
+-->
